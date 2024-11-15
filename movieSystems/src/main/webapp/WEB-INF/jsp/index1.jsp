@@ -327,6 +327,7 @@
                 <a href="/addMovie">Movie Addition</a>
                 <!-- <a href="/movieUpdate">Movie Update</a>
                 <a href="/movieDeletion">Movie Deletion</a> -->
+                
                 <a href="/movieReport">Movie Reports</a>
                 <a href="/movieLanguage">Find By Language</a>
             </div>

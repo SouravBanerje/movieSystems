@@ -116,6 +116,7 @@
             </div>
         </c:forEach>
     </div>
+    
     <a href="/index" class="return-link">Return to Home</a>
 </div>
 
