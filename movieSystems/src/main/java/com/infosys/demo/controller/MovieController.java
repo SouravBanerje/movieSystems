@@ -2,8 +2,10 @@ package com.infosys.demo.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,10 +90,15 @@ public class MovieController {
 
 	@PostMapping("/showTimeUpdation/{id}")
 	public ModelAndView updateShowTime(@PathVariable Integer id, @ModelAttribute ShowTime showTime) {
-		showTimeDao.updateShowTimeById(id, showTime.getShowTimeName(), showTime.getShowTimeRoyalPrice(),
-				showTime.getShowTimePremierPrice());
-		return new ModelAndView("redirect:/showTimeReport");
+	    
+	    Double royalPrice = showTimeService.createRoyalPrice(showTime.getShowTimePremierPrice());
+	    showTime.setShowTimeRoyalPrice(royalPrice);
+
+	    showTimeDao.updateShowTimeById(id, showTime.getShowTimeName(), showTime.getShowTimeRoyalPrice(), showTime.getShowTimePremierPrice());
+
+	    return new ModelAndView("redirect:/showTimeReport");
 	}
+
 
 	@GetMapping("/addMovie")
 	public ModelAndView showMovieEntryPage() {
@@ -370,7 +377,7 @@ public class MovieController {
 
 		List<MovieShow> movieShows = movieShowDao.findByMovieId(movieId);
 
-		ModelAndView mv = new ModelAndView("movieUpdatePage1");
+		ModelAndView mv = new ModelAndView("movieUpdatePage");
 		mv.addObject("movieRecord", movie);
 		mv.addObject("showTimeList", showTimeList);
 		mv.addObject("movieShows", movieShows); // Add movieShows to the model
@@ -425,10 +432,10 @@ public class MovieController {
 	@PostMapping("/movieUpdate1/{movieId}")
 	public ModelAndView saveMovieUpdate1(
 	        @ModelAttribute("movieRecord") Movie movie,
-	        HttpServletRequest request, 
+	        HttpServletRequest request,
 	        @PathVariable("movieId") String movieId) {
 
-	    // Update the main movie record
+	    // Update the main movie record (this part works as expected)
 	    movieDao.updateMovieById(movieId, movie.getMovieName(), movie.getLanguage(),
 	            movie.getGenre(), movie.getDuration(), movie.getRatings());
 
@@ -442,7 +449,7 @@ public class MovieController {
 	        Integer premier = null;
 	        Integer royal = null;
 
-	        // Parse showId
+	        // Parse showId only if it's not empty
 	        if (showIdStr != null && !showIdStr.isEmpty()) {
 	            try {
 	                showId = Integer.parseInt(showIdStr);
@@ -451,25 +458,29 @@ public class MovieController {
 	            }
 	        }
 
-	        // Check if seats are empty
+	        // Skip if showId is invalid
+	        if (showId == null) {
+	            continue;
+	        }
+
+	        // Check if both premier and royal seats are empty (indicating deletion)
 	        boolean isPremierEmpty = (premierSeat == null || premierSeat.isEmpty());
 	        boolean isRoyalEmpty = (royalSeat == null || royalSeat.isEmpty());
 
-	        // If both premier and royal seats are empty and showId is valid, delete the movie show record
-	        if (isPremierEmpty && isRoyalEmpty && showId != null) {
+	        // If both premier and royal seats are empty, delete the movie show record
+	        if (isPremierEmpty && isRoyalEmpty) {
 	            MovieShowEmbed embed = new MovieShowEmbed(movieId, showId);
-	            
-	            if (movieShowDao.existsById(embed)) {  // Check if record exists before deletion
-	                movieShowDao.deleteMovieShowById(embed); // Delete the movie show
-	                System.out.println("Deleted movie show with showId: " + showId);  // Debugging output
+	            if (movieShowDao.existsById(embed)) {
+	                movieShowDao.deleteMovieShowById(embed);
+	                System.out.println("Deleted movie show with showId: " + showId);
 	            }
 	        } else {
-	            // Parse the seats if they are not empty
+	            // Parse premier and royal seat values if they're not empty
 	            if (!isPremierEmpty) {
 	                try {
 	                    premier = Integer.parseInt(premierSeat);
 	                } catch (NumberFormatException e) {
-	                    premier = 0;  // Default to 0 if parsing fails
+	                    premier = 0; // Default to 0 if parsing fails
 	                }
 	            }
 
@@ -477,22 +488,36 @@ public class MovieController {
 	                try {
 	                    royal = Integer.parseInt(royalSeat);
 	                } catch (NumberFormatException e) {
-	                    royal = 0;  // Default to 0 if parsing fails
+	                    royal = 0; // Default to 0 if parsing fails
 	                }
 	            }
 
-	            // If showId, premier, and royal are valid, save or update the movie show record
-	            if (showId != null && showId > 0 && premier != null && royal != null) {
-	                MovieShowEmbed embed = new MovieShowEmbed(movieId, showId);
-	                MovieShow movieShow = new MovieShow(embed, royal, premier);
-	                movieShowDao.save(movieShow); // Save or update the record
-	                System.out.println("Saved movie show with showId: " + showId + ", Premier: " + premier + ", Royal: " + royal);  // Debugging output
+	            // Now we need to handle updating or inserting the show entry
+	            MovieShowEmbed embed = new MovieShowEmbed(movieId, showId);
+	            MovieShow movieShow = new MovieShow(embed, royal, premier);
+
+	            // First, check if the old show exists (showId = 3)
+	            MovieShowEmbed oldEmbed = new MovieShowEmbed(movieId, showId);
+
+	            // Delete the old show first if it exists
+	            if (movieShowDao.existsById(oldEmbed)) {
+	                movieShowDao.deleteMovieShowById(oldEmbed);
+	                System.out.println("Deleted old movie show with showId: " + showId);
 	            }
+
+	            // Save the updated/new show with the new showId (showId = 4)
+	            movieShowDao.save(movieShow);
+	            System.out.println("Saved updated/new movie show with showId: " + showId);
 	        }
 	    }
 
-	    return new ModelAndView("redirect:/movieUpdate");  // Redirect after update
+	    // Redirect back to movie update page
+	    return new ModelAndView("redirect:/movieUpdate");
 	}
+
+
+
+
 
 
 	//10-11

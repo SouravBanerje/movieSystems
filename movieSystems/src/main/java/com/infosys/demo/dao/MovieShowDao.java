@@ -17,6 +17,7 @@ public interface MovieShowDao {
 	
 	 // New method to find MovieShow records by movieId
     public List<MovieShow> findByMovieId(String movieId);
+   public void deleteMovieShowByMovieIdAndShowId(String movieId,Integer showTimeId);
 	/*
 	public void updateMovieShowById(MovieShowEmbed id,
 			Integer premierSeatNumber,

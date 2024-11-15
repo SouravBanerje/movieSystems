@@ -23,31 +23,35 @@
             padding: 20px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             margin: 40px auto;
-            max-width: 900px;
+            max-width: 1200px;
         }
         h1 {
             color: #ffcc00;
             text-align: center;
+            margin-bottom: 40px;
+        }
+        .movie-card {
+            background-color: rgba(40, 40, 40, 0.8);
+            border-radius: 8px;
+            padding: 15px;
             margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: rgba(255, 255, 255, 0.1);
+        .movie-card h4 {
+            color: #ffcc00;
+            text-align: center;
+            margin-bottom: 15px;
         }
-        table th, table td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #666;
+        .movie-details {
             color: #ffffff;
-        }
-        table th {
-            background-color: rgba(255, 255, 255, 0.2);
+            margin-bottom: 10px;
         }
         .btn-link {
             color: #ffcc00;
             text-decoration: none;
+            display: block;
+            text-align: center;
+            margin-top: 15px;
         }
         .btn-link:hover {
             color: #e6b800;
@@ -57,7 +61,7 @@
             text-decoration: none;
             text-align: center;
             display: block;
-            margin-top: 20px;
+            margin-top: 30px;
         }
     </style>
 </head>
@@ -65,52 +69,39 @@
 
 <div class="report-container">
     <h1><u>Movie Report</u></h1>
-    <table class="table table-bordered table-striped table-dark">
-        <thead>
-            <tr>
-                <th>Movie Number</th>
-                <th>Movie Name</th>
-                <th>Language</th>
-                <th>Genre</th>
-                <th>Duration</th>
-                <th>Rating</th>
-                <th>Show Details</th>
-                <th>Deletion</th>
-                <th>Updation</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach items="${movieList}" var="movie">
-                <tr>
-                    <td>${movie.movieId}</td>
-                    <td>${movie.movieName}</td>
-                    <td>${movie.language}</td>
-                    <td>${movie.genre}</td>
-                    <td>${movie.duration}</td>
-                    <td>${movie.ratings}</td>
-                    <td>
+    <div class="row">
+        <c:forEach items="${movieList}" var="movie">
+            <div class="col-md-4">
+                <div class="movie-card">
+                    <h4>${movie.movieName}</h4>
+                    <p class="movie-details"><strong>Language:</strong> ${movie.language}</p>
+                    <p class="movie-details"><strong>Genre:</strong> ${movie.genre}</p>
+                    <p class="movie-details"><strong>Duration:</strong> ${movie.duration}</p>
+                    <p class="movie-details"><strong>Rating:</strong> ${movie.ratings}</p>
+
+                    <div>
                         <c:forEach items="${movieMap}" var="showTime">
                             <c:if test="${movie.movieId == showTime.key}">
                                 <c:forEach items="${showTime.value}" var="show">
                                     <table class="table table-bordered table-sm table-dark">
                                         <tr>
-                                            <td>Show Time Name:</td>
+                                            <td><strong>Show Time Name:</strong></td>
                                             <td>${show.showTimeName}</td>
                                         </tr>
                                         <tr>
-                                            <td>Royal Seat:</td>
+                                            <td><strong>Royal Seat:</strong></td>
                                             <td>${show.royalSeatNumber}</td>
                                         </tr>
                                         <tr>
-                                            <td>Royal Booked:</td>
+                                            <td><strong>Royal Booked:</strong></td>
                                             <td>${show.royalBooked}</td>
                                         </tr>
                                         <tr>
-                                            <td>Premier Seat:</td>
+                                            <td><strong>Premier Seat:</strong></td>
                                             <td>${show.premierSeatNumber}</td>
                                         </tr>
                                         <tr>
-                                            <td>Premier Booked:</td>
+                                            <td><strong>Premier Booked:</strong></td>
                                             <td>${show.premierBooked}</td>
                                         </tr>
                                     </table>
@@ -118,13 +109,14 @@
                                 </c:forEach>
                             </c:if>
                         </c:forEach>
-                    </td>
-                    <td><a href="/movieDeletion/${movie.movieId}" class="btn-link">Delete</a></td>
-                    <td><a href="/movieUpdate/${movie.movieId}" class="btn-link">Update</a></td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
+                    </div>
+
+                    <a href="/movieDeletion/${movie.movieId}" class="btn-link">Delete</a>
+                    <a href="/movieUpdate/${movie.movieId}" class="btn-link">Update</a>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
     <a href="/index" class="return-link">Return to Home</a>
 </div>
 

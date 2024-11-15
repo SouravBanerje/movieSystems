@@ -56,6 +56,13 @@ public class MovieShowDaoImpl implements MovieShowDao {
 	}
 
 
+	@Override
+	public void deleteMovieShowByMovieIdAndShowId(String movieId, Integer showTimeId) {
+		repository.deleteMovieShowByMovieIdAndShowTimeId(movieId, showTimeId);
+		
+	}
+
+
 	/*
 	 * @Override public void updateMovieShowById(MovieShowEmbed id, Integer
 	 * premierSeatNumber, Integer royalSeatNumber) { MovieShow movieShow =
