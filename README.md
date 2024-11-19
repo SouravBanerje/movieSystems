@@ -1,66 +1,66 @@
-# Movie Booking System
+# 🎬 Movie Booking System
 
-## Project Overview
-The Movie Booking System is a web application that allows users to book movie tickets, manage movies, theaters, and showtimes. The system provides features such as user authentication, movie and theater management, and booking management, with an admin interface for managing content.
+## 🚀 Project Overview
+The **Movie Booking System** is a dynamic web application designed for movie lovers. It enables users to book movie tickets, manage movie details, theaters, and showtimes. The system offers features like user authentication, role-based access, and a seamless booking experience. The admin interface provides comprehensive tools for managing movie listings, theaters, and showtimes.
 
-## Technologies Used
-- **Frontend**:  
-  - CSS  
-  - JavaScript  
-  - JSP (Java Server Pages)
+## 🛠️ Technologies Used
 
-- **Backend**:  
-  - Java Spring Boot  
-  - Spring Data JPA  
-  - Spring Security
+### Frontend:
+- **CSS** - Styling the user interface to be sleek and responsive.
+- **JavaScript** - Handling dynamic content and interactive elements.
+- **JSP (Java Server Pages)** - Rendering dynamic web pages using Java.
 
-- **Database**:  
-  - MySQL
+### Backend:
+- **Java Spring Boot** - Framework for building a robust and scalable backend.
+- **Spring Data JPA** - Simplifying database interactions with an object-relational mapper.
+- **Spring Security** - Implementing user authentication and authorization features.
 
-- **Build Tool**:  
-  - Maven
+### Database:
+- **MySQL** - Relational database for managing user, movie, theater, and booking data.
 
-- **Code Editor and Tools**:  
-  - Eclipse IDE
+### Build Tool:
+- **Maven** - Automating project build and dependency management.
 
-- **Server**:  
-  - Apache Tomcat
+### Code Editor & Tools:
+- **Eclipse IDE** - Java IDE for efficient development and debugging.
 
-## Features
+### Server:
+- **Apache Tomcat** - Java-based web server for hosting the application.
+
+## 💡 Features
 
 ### 1. User Authentication and Authorization
-- Implemented user registration and login functionality.
-- Integrated role-based access control (RBAC) to manage different levels of access (admin, user).
-- Secured APIs using **Spring Security** to protect sensitive endpoints.
+- **User Registration & Login**: Secure login and registration for users.
+- **Role-Based Access Control**: Different user roles (admin, user) with specific permissions.
+- **Secure APIs**: Protecting sensitive endpoints with **Spring Security**.
 
 ### 2. Movie Management
-- Admin users can **add, view, update, and delete** movies in the system.
-- Implemented a feature to **filter movies by language**.
+- **CRUD Operations**: Admins can **create, read, update, and delete** movie listings.
+- **Filter by Language**: Feature to **filter movies by language** for a better user experience.
 
 ### 3. Theater Management
-- Admin users can **add, view, update, and delete** theater details.
-- Implemented functionality to **add screens** and **list available screens** in a theater.
+- **CRUD Operations for Theaters**: Admins can manage theater details.
+- **Screen Management**: **Add screens** to theaters and **list available screens**.
 
 ### 4. Showtime Management
-- Admin users can **add, view, update, and delete** showtimes for each movie.
-- Integrated showtime data with movie schedules and theater details.
+- **CRUD Operations for Showtimes**: Admins can manage showtimes for movies.
+- **Showtime Integration**: Syncs with movie schedules and theater details.
 
 ### 5. Booking Management
-- Users can **create, update, delete, and view** bookings.
-- Integrated booking details with available showtimes, theaters, and user information.
+- **Manage Bookings**: Users can **create, update, delete, and view** their bookings.
+- **Seamless Booking Process**: Integration with showtimes, theaters, and movie data for an enhanced booking experience.
 
+## 🛠️ Setup Instructions
 
+### 📋 Prerequisites
+To run this project, you need:
+- **JDK 11 or above**
+- **MySQL Database**
+- **Maven**
+- **Eclipse IDE** (or any preferred Java IDE)
+- **Apache Tomcat** (for running the application)
 
-## Setup Instructions
-
-### Prerequisites
-- JDK 11 or above
-- MySQL Database
-- Maven
-- Eclipse IDE (or any other Java IDE)
-- Apache Tomcat (for running the application)
-
-### Steps to Run the Application
+### 🚀 Steps to Run the Application
 
 1. **Clone the Repository**:
    ```bash
