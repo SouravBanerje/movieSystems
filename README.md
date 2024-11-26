@@ -1,80 +1,59 @@
-
 # 🎬 Movie Booking System
 
-## 🌟 Project Overview
-The **Movie Booking System** is a feature-packed web application designed for users to explore movies, book tickets, and manage theaters, screens, and showtimes. With a focus on user experience, it offers secure login, role-based access, and a smooth movie booking process. Admins can manage all aspects of the system, from movies to bookings, while users can easily make reservations for their favorite movies.
-
----
+## 🚀 Project Overview
+The **Movie Booking System** is a dynamic web application designed for movie lovers. It enables users to book movie tickets, manage movie details, theaters, and showtimes. The system offers features like user authentication, role-based access, and a seamless booking experience. The admin interface provides comprehensive tools for managing movie listings, theaters, and showtimes.
 
 ## 🛠️ Technologies Used
 
-### **Frontend:**
-- **CSS**: Beautiful and responsive UI for an immersive experience.
-- **JavaScript**: Enhances interactivity and dynamic content.
-- **JSP (Java Server Pages)**: Renders dynamic content on the frontend.
+### Frontend:
+- **CSS** - Styling the user interface to be sleek and responsive.
+- **JavaScript** - Handling dynamic content and interactive elements.
+- **JSP (Java Server Pages)** - Rendering dynamic web pages using Java.
 
-### **Backend:**
-- **Java Spring Boot**: Fast and robust backend framework for building web applications.
-- **Spring Data JPA**: Efficient and easy-to-use ORM for database interactions.
-- **Spring Security**: Protects endpoints and ensures secure login and user roles.
+### Backend:
+- **Java Spring Boot** - Framework for building a robust and scalable backend.
+- **Spring Data JPA** - Simplifying database interactions with an object-relational mapper.
+- **Spring Security** - Implementing user authentication and authorization features.
 
-### **Database:**
-- **MySQL**: Stores movie, theater, and user data in a relational database.
+### Database:
+- **MySQL** - Relational database for managing user, movie, theater, and booking data.
 
-### **Build Tool:**
-- **Maven**: Manages dependencies and builds the application efficiently.
+### Build Tool:
+- **Maven** - Automating project build and dependency management.
 
-### **Code Editor & Tools:**
-- **Eclipse IDE**: Java IDE for seamless development and debugging.
+### Code Editor & Tools:
+- **Eclipse IDE** - Java IDE for efficient development and debugging.
 
-### **Server:**
-- **Apache Tomcat**: A reliable Java-based server for deploying the application.
-
----
+### Server:
+- **Apache Tomcat** - Java-based web server for hosting the application.
 
 ## 💡 Features
 
-### 1. **User Authentication and Authorization**
-- **User Registration & Login**: Users can securely register and log in to the system.
-- **Role-Based Access Control (RBAC)**: Admins and users have specific roles with permissions tailored to their needs.
-- **Secure APIs**: APIs are protected with **Spring Security** to ensure secure access.
+### 1. User Authentication and Authorization
+- **User Registration & Login**: Secure login and registration for users.
+- **Role-Based Access Control**: Different user roles (admin, user) with specific permissions.
+- **Secure APIs**: Protecting sensitive endpoints with **Spring Security**.
 
-### 2. **Movie Management**
-- **CRUD Operations**: Admins can **add, view, update, and delete** movies in the system.
-- **Movie Search & Filter**: Users can easily **search movies** by title, genre, and language. 
-- **Movies by Language**: Admins can filter movies by language for better navigation.
+### 2. Movie Management
+- **CRUD Operations**: Admins can **create, read, update, and delete** movie listings.
+- **Filter by Language**: Feature to **filter movies by language** for a better user experience.
 
-### 3. **Theater Management**
-- **Manage Theaters**: Admins can **add, view, update, and delete** theater details.
-- **Screen Management**: Admins can **add screens** to theaters and **list available screens** with their respective details.
-- **Theater Locations**: Displays theater locations for easy booking.
+### 3. Theater Management
+- **CRUD Operations for Theaters**: Admins can manage theater details.
+- **Screen Management**: **Add screens** to theaters and **list available screens**.
 
-### 4. **Showtime Management**
-- **Manage Showtimes**: Admins can **add, update, and delete** showtimes for each movie.
-- **Movie-Specific Showtimes**: Showtime data is linked to individual movies and screens.
-- **Dynamic Scheduling**: Showtimes can be dynamically adjusted as per demand.
+### 4. Showtime Management
+- **CRUD Operations for Showtimes**: Admins can manage showtimes for movies.
+- **Showtime Integration**: Syncs with movie schedules and theater details.
 
-### 5. **Booking Management**
-- **Create and Manage Bookings**: Users can **create, update, delete, and view** their bookings.
-- **Booking Notifications**: Users receive notifications on booking confirmations, reminders, and cancellations.
-- **Booking History**: Users can view past bookings with easy navigation.
-
-### 6. **Payment Integration** (New Feature)
-- **Secure Payment Gateway**: Integrated with a payment gateway for secure online payments.
-- **Booking Confirmation**: Users receive a confirmation email with booking and payment details.
-- **Booking Invoices**: Admins can view and generate invoices for completed bookings.
-
-### 7. **Movie Rating and Reviews** (New Feature)
-- **User Ratings**: Users can rate movies based on their experience.
-- **Movie Reviews**: Users can write reviews and share their thoughts about movies.
-- **Admin Moderation**: Admins can moderate reviews to ensure content quality.
-
----
+### 5. Booking Management
+- **Manage Bookings**: Users can **create, update, delete, and view** their bookings.
+- **Seamless Booking Process**: Integration with showtimes, theaters, and movie data for an enhanced booking experience.
 
 ## 🛠️ Setup Instructions
 
 ### 📋 Prerequisites
-To get started, you’ll need the following:
+To run this project, you need:
 - **JDK 11 or above**
 - **MySQL Database**
 - **Maven**
